@@ -1,6 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { NewProductData } from "../../components/add-product-page/index";
 
-const productsInitialState = {
+interface IProduct {
+    id: number;
+    name: string;
+    price: number;
+    image: string;
+}
+
+interface IProductsState {
+    products: Array<IProduct>;
+}
+
+const productsInitialState: IProductsState = {
     products: [
         {
             id: 1,
@@ -35,7 +47,21 @@ const productsInitialState = {
 const productsPageSlice = createSlice({
     name: "products",
     initialState: productsInitialState,
-    reducers: {},
+    reducers: {
+        addProduct(state, action: PayloadAction<NewProductData>) {
+            debugger;
+            const lastId = state.products.length;
+            const newProduct: IProduct = {
+                id: lastId + 1,
+                name: action.payload.name,
+                price: action.payload.price,
+                image: action.payload.imageUrl,
+            };
+
+            state.products.push(newProduct);
+        },
+    },
 });
 
+export const { addProduct } = productsPageSlice.actions;
 export default productsPageSlice;

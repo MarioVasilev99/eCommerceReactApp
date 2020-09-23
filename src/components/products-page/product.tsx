@@ -1,6 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../reducers";
 import ProductCartButton from "./product-cart-button";
 import { makeStyles } from "@material-ui/styles";
 
@@ -8,22 +6,33 @@ const useStyles = makeStyles({
     productItem: {
         display: "flex",
         flexWrap: "wrap",
-        width: "350px",
+        flex: "0 0 350px",
+        maxHeight: "460px",
+        marginBottom: "96px",
     },
     productImage: {
         width: "350px",
         height: "350px",
+        objectFit: "fill",
     },
-    nameWrapper: {
+    propertyWrapper: {
         display: "flex",
-        flexBasis: "75%",
+        width: "350px",
+        height: "109px",
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "#E2E2E2",
     },
+    nameWrapper: {
+        display: "flex",
+        flex: "0 0 239px",
+        height: "109px",
+        justifyContent: "center",
+        alignItems: "center",
+    },
     productName: {
         fontFamily: "Roboto",
-        fontSize: "23px",
+        fontSize: "24px",
         lineHeight: "26.95px",
         textAlign: "center",
     },
@@ -45,10 +54,12 @@ const Product = ({ id, image, name }: TProps): JSX.Element => {
                 src={image}
                 alt="productImage"
             />
-            <div className={classes.nameWrapper}>
-                <p className={classes.productName}>{name}</p>
+            <div className={classes.propertyWrapper}>
+                <div className={classes.nameWrapper}>
+                    <p className={classes.productName}>{name}</p>
+                </div>
+                <ProductCartButton productId={id} />
             </div>
-            <ProductCartButton productId={id} />
         </div>
     );
 };

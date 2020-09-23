@@ -9,7 +9,9 @@ const useStyles = makeStyles({
     root: {
         display: "grid",
         gridTemplateColumns: "2fr 1fr",
-        backgroundColor: "white",
+        backgroundColor: "#FFFFFF",
+        height: "111px",
+        width: "auto",
         filter: "drop-shadow(4px 0px 2px rgba(0, 0, 0, 0.25))",
     },
     signature: {

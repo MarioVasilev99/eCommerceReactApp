@@ -7,7 +7,8 @@ const useStyles = makeStyles({
         display: "flex",
         justifyContent: "center",
         backgroundColor: "#ED1C24",
-        padding: "1em",
+        flex: "0 0 109px",
+        height: "109px",
     },
 });
 
@@ -20,7 +21,7 @@ const ProductCartButton = ({ productId }: TProps): JSX.Element => {
 
     return (
         <div className={classes.cartWrapper}>
-            <img src={ProductCart} alt="product-cart-image" />
+            <img src={ProductCart} alt="product-cart" />
         </div>
     );
 };

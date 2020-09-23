@@ -6,10 +6,11 @@ import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
     productsWrapper: {
-        display: "grid",
-        gridTemplateColumns: "repeat(4, 350px)",
-        justifyContent: "space-around",
-        margin: "4em 0 4em 0",
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "space-evenly",
+        alignContent: "space-between",
+        marginTop: "80px",
     },
 });
 
