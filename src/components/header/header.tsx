@@ -8,7 +8,7 @@ import logo from "../../assets/images/logo.svg";
 const useStyles = makeStyles({
     root: {
         display: "grid",
-        gridTemplateColumns: "2fr 1fr",
+        gridTemplateColumns: "3fr 1.5fr",
         backgroundColor: "#FFFFFF",
         height: "111px",
         width: "auto",

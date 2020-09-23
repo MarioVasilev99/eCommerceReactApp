@@ -5,9 +5,9 @@ import { addProduct } from "../../reducers/products/products-page-slice";
 import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
-    heading: {
+    headingWrapper: {
         gridColumnStart: "1",
-        gridColumnEnd: "7",
+        gridColumnEnd: "10",
         gridRowStart: "1",
         backgroundColor: "#ED1C24",
         padding: "1.5em",
@@ -20,22 +20,49 @@ const useStyles = makeStyles({
     },
     formWrapper: {
         display: "grid",
-        gridTemplateColumns: "repeat(6, 1fr)",
+        gridTemplateColumns: "repeat(9, 1fr)",
         padding: "5.5em",
+        paddingTop: "2.5em",
         gridGap: "1em 1em",
+        "& input": {
+            boxSizing: "border-box",
+            backgroundColor: "#F8F8F8",
+            width: "100%",
+            height: "104px",
+            border: "1px solid #6F6F6F",
+            borderRadius: "5px",
+            fontFamily: "Roboto",
+            fontSize: "24px",
+            lineHeight: "28.13px",
+            color: "C4C4C4",
+            boxShadow: "0 0 15px 4px rgba(0,0,0,0.06)",
+            paddingLeft: "2em",
+        },
     },
-    productNameField: {
+    nameFieldWrapper: {
         gridColumnStart: "1",
-        gridColumnEnd: "5",
+        gridColumnEnd: "7",
+    },
+    priceFieldWrapper: {
+        gridColumnStart: "7",
+        gridColumnEnd: "10",
     },
     imageField: {
         gridColumnStart: "1",
-        gridColumnEnd: "7",
+        gridColumnEnd: "10",
         gridRowStart: "3",
         width: "100%",
     },
-    saveBtn: {
+    saveBtnWrapper: {
+        gridColumnStart: "8",
+        gridColumnEnd: "10",
         gridRowStart: "4",
+        "& input": {
+            backgroundColor: "#ED1C24",
+            color: "#FFFFFF",
+            borderRadius: "5px",
+            paddingLeft: "0",
+        },
     },
 });
 
@@ -58,10 +85,10 @@ const AddProductPage = (): JSX.Element => {
 
     return (
         <form className={classes.formWrapper} onSubmit={handleSubmit(onSubmit)}>
-            <div className={classes.heading}>
+            <div className={classes.headingWrapper}>
                 <h1>New Product</h1>
             </div>
-            <div className={classes.productNameField}>
+            <div className={classes.nameFieldWrapper}>
                 <input
                     placeholder="Product name"
                     type="text"
@@ -71,7 +98,7 @@ const AddProductPage = (): JSX.Element => {
                 />
             </div>
 
-            <div>
+            <div className={classes.priceFieldWrapper}>
                 <input
                     placeholder="Price"
                     type="number"
@@ -91,7 +118,7 @@ const AddProductPage = (): JSX.Element => {
                 />
             </div>
 
-            <div className={classes.saveBtn}>
+            <div className={classes.saveBtnWrapper}>
                 <input type="submit" value="Save" ref={register} />
             </div>
         </form>

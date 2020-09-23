@@ -11,6 +11,7 @@ const useStyles = makeStyles({
     },
     navigationBar: {
         display: "flex",
+        height: "100%",
     },
 });
 
