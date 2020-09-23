@@ -6,11 +6,16 @@ import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
     productsWrapper: {
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-evenly",
-        alignContent: "space-between",
-        marginTop: "80px",
+        position: "relative",
+        overflow: "hidden",
+        display: "grid",
+        gridTemplateColumns: "repeat(4, 300px)",
+        gridTemplateRows: "auto",
+        justifyItems: "center",
+        justifyContent: "center",
+        gap: "2em 5em",
+        marginTop: "60px",
+        marginBottom: "60px",
     },
 });
 

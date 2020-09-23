@@ -4,6 +4,7 @@ import { Route } from "react-router-dom";
 import Header from "./components/header/header";
 import ProductsPage from "./components/products-page/index";
 import AddProductPage from "./components/add-product-page/index";
+import MyOrders from "./components/my-orders/MyOrders";
 
 const useStyles = makeStyles({
     root: {},
@@ -20,6 +21,7 @@ function App() {
                 path="/products/add"
                 render={() => <AddProductPage />}
             />
+            <Route exact path="/orders" render={() => <MyOrders />} />
         </div>
     );
 }

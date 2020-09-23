@@ -16,7 +16,7 @@ const useStyles = makeStyles({
         display: "flex",
         alignItems: "center",
         fontFamily: "Roboto",
-        fontSize: "23px",
+        fontSize: "20px",
         lineHeight: "26.95px",
         padding: "1em",
     },

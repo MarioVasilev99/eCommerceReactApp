@@ -5,10 +5,14 @@ import { makeStyles } from "@material-ui/styles";
 const useStyles = makeStyles({
     cartWrapper: {
         display: "flex",
+        flex: "0 0 100%",
         justifyContent: "center",
+        alignItems: "center",
         backgroundColor: "#ED1C24",
-        flex: "0 0 109px",
-        height: "109px",
+        "& img": {
+            flex: "0 0 40px",
+            height: "40px",
+        },
     },
 });
 

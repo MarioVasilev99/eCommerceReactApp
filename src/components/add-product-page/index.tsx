@@ -119,7 +119,12 @@ const AddProductPage = (): JSX.Element => {
             </div>
 
             <div className={classes.saveBtnWrapper}>
-                <input type="submit" value="Save" ref={register} />
+                <input
+                    type="submit"
+                    value="Save"
+                    name="submit"
+                    ref={register}
+                />
             </div>
         </form>
     );

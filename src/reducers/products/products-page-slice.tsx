@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { NewProductData } from "../../components/add-product-page/index";
 
-interface IProduct {
+export interface IProduct {
     id: number;
     name: string;
     price: number;
@@ -49,7 +49,6 @@ const productsPageSlice = createSlice({
     initialState: productsInitialState,
     reducers: {
         addProduct(state, action: PayloadAction<NewProductData>) {
-            debugger;
             const lastId = state.products.length;
             const newProduct: IProduct = {
                 id: lastId + 1,
