@@ -11,7 +11,7 @@ const useStyles = makeStyles({
         gridTemplateColumns: "repeat(6, 1fr)",
         backgroundColor: "#FFFFFF",
         height: "80px",
-        width: "auto",
+        minWidth: "1920px",
         filter: "drop-shadow(4px 0px 2px rgba(0, 0, 0, 0.25))",
     },
     signature: {
@@ -41,7 +41,7 @@ const useStyles = makeStyles({
     },
 });
 
-const Header: React.FC = (props) => {
+const Header = (): JSX.Element => {
     const classes = useStyles();
 
     return (

@@ -5,6 +5,9 @@ import Header from "./components/header/header";
 import ProductsPage from "./components/products-page/index";
 import AddProductPage from "./components/add-product-page/index";
 import MyOrders from "./components/my-orders/MyOrders";
+import { useSelector } from "react-redux";
+import { RootState } from "./reducers";
+import ShoppingCart from "./components/shopping-cart/shopping-cart";
 
 const useStyles = makeStyles({
     root: {
@@ -12,8 +15,13 @@ const useStyles = makeStyles({
     },
 });
 
-function App() {
+const App = (): JSX.Element => {
     const classes = useStyles();
+
+    const isShoppingCartVisible = useSelector(
+        (state: RootState) => state.shoppingCart.isVisible
+    );
+
     return (
         <div className={classes.root}>
             <Header />
@@ -24,8 +32,9 @@ function App() {
                 render={() => <AddProductPage />}
             />
             <Route exact path="/orders" render={() => <MyOrders />} />
+            {isShoppingCartVisible ? <ShoppingCart /> : null}
         </div>
     );
-}
+};
 
 export default App;
