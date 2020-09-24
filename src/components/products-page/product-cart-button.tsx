@@ -1,6 +1,10 @@
 import React from "react";
 import ProductCart from "../../assets/images/cart-product.svg";
 import { makeStyles } from "@material-ui/styles";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../reducers";
+import { IProduct } from "./../../reducers/products/products-page-slice";
+import { addItemToCart } from "../../reducers/shopping-cart/cart-slice";
 
 const useStyles = makeStyles({
     cartWrapper: {
@@ -21,10 +25,24 @@ type TProps = {
 };
 
 const ProductCartButton = ({ productId }: TProps): JSX.Element => {
-    const classes = useStyles();
+    const dispatch = useDispatch();
+    const products = useSelector(
+        (state: RootState) => state.productsPage.products
+    );
 
+    const handleClick: React.MouseEventHandler = (e) => {
+        const product = products.find((p: IProduct) => p.id === productId);
+
+        if (product === undefined) {
+            throw new Error("Product not found.");
+        }
+
+        dispatch(addItemToCart(product));
+    };
+
+    const classes = useStyles();
     return (
-        <div className={classes.cartWrapper}>
+        <div className={classes.cartWrapper} onClick={handleClick}>
             <img src={ProductCart} alt="product-cart" />
         </div>
     );
