@@ -16,9 +16,9 @@ const useStyles = makeStyles({
         display: "flex",
         alignItems: "center",
         fontFamily: "Roboto",
-        fontSize: "20px",
+        fontSize: "18px",
         lineHeight: "26.95px",
-        padding: "1em",
+        padding: "0.5em",
     },
 });
 

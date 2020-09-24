@@ -2,22 +2,28 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../reducers";
 import Product from "./product";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
-const useStyles = makeStyles({
-    productsWrapper: {
-        position: "relative",
-        overflow: "hidden",
-        display: "grid",
-        gridTemplateColumns: "repeat(4, 300px)",
-        gridTemplateRows: "auto",
-        justifyItems: "center",
-        justifyContent: "center",
-        gap: "2em 5em",
-        marginTop: "60px",
-        marginBottom: "60px",
-    },
-});
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        productsWrapper: {
+            position: "relative",
+            overflow: "hidden",
+            display: "grid",
+            [theme.breakpoints.between("lg", "xl")]: {
+                gridTemplateColumns: "repeat(3, 300px)",
+            },
+            [theme.breakpoints.up("xl")]: {
+                gridTemplateColumns: "repeat(4, 300px)",
+            },
+            justifyItems: "center",
+            justifyContent: "center",
+            gap: "3em 5em",
+            marginTop: "60px",
+            marginBottom: "60px",
+        },
+    })
+);
 
 const Products = (): JSX.Element => {
     const classes = useStyles();

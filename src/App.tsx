@@ -7,7 +7,9 @@ import AddProductPage from "./components/add-product-page/index";
 import MyOrders from "./components/my-orders/MyOrders";
 
 const useStyles = makeStyles({
-    root: {},
+    root: {
+        minWidth: "80%",
+    },
 });
 
 function App() {

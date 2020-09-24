@@ -8,7 +8,7 @@ import logo from "../../assets/images/logo.svg";
 const useStyles = makeStyles({
     root: {
         display: "grid",
-        gridTemplateColumns: "3fr 1.5fr",
+        gridTemplateColumns: "repeat(6, 1fr)",
         backgroundColor: "#FFFFFF",
         height: "80px",
         width: "auto",
@@ -25,12 +25,16 @@ const useStyles = makeStyles({
         marginLeft: "1em",
     },
     logoArea: {
+        gridColumnStart: "1",
+        gridColumnEnd: "5",
         display: "flex",
         justifyContent: "flex-start",
         alignItems: "center",
         marginLeft: "1em",
     },
     navigationArea: {
+        gridColumnStart: "5",
+        gridColumnEnd: "7",
         display: "flex",
         justifyContent: "flex-start",
         alignItems: "center",

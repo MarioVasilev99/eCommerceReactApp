@@ -8,8 +8,7 @@ const UseStyles = makeStyles({
         position: "relative",
         top: "0",
         left: "0",
-        marginLeft: "auto",
-        marginRight: "3em",
+        marginLeft: "4em",
     },
     cart: {
         position: "relative",
