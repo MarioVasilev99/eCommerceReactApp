@@ -17,8 +17,9 @@ const useStyles = makeStyles({
     },
     cart: {
         backgroundColor: "white",
-        height: "200px",
-        width: "400px",
+        height: "400px",
+        width: "800px",
+        borderRadius: "4px",
     },
 });
 
@@ -32,7 +33,9 @@ const ShoppingCart = (): JSX.Element => {
 
     return (
         <div className={classes.cartWrapper} onClick={handleHideCartClick}>
-            <div className={classes.cart}>Shoppiiiiings</div>
+            <div className={classes.cart}>
+                <ul></ul>
+            </div>
         </div>
     );
 };
