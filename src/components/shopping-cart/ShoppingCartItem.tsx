@@ -9,7 +9,7 @@ const useStyles = makeStyles({
         justifyContent: "center",
         alignItems: "center",
 
-        margin: "0 0.8em 0 0.8em",
+        margin: "0 0.8em 0.5em 0.8em",
         borderRadius: "0.3em",
         backgroundColor: "#F5F6F8",
         boxShadow: "10px 10px 9px -13px rgba(0,0,0,0.75)",
@@ -38,17 +38,29 @@ const useStyles = makeStyles({
     },
 });
 
-const ShoppingCartItem = (): JSX.Element => {
+type TProps = {
+    Id: number;
+    ImageUrl: string;
+    Name: string;
+    Price: number;
+};
+
+const ShoppingCartItem = ({
+    Id,
+    ImageUrl,
+    Name,
+    Price,
+}: TProps): JSX.Element => {
     const classes = useStyles();
     return (
         <li className={classes.itemWrapper}>
             <img
-                src="https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1546939812/565806_XJAZY_9037_001_100_0000_Light-T-shirt-with-Gucci-Blade-print.jpg"
-                alt=""
+                src={ImageUrl}
+                alt="product-image"
                 className={classes.productImage}
             />
-            <p className={classes.productName}>Product name</p>
-            <p className={classes.productPrice}>$100.99</p>
+            <p className={classes.productName}>{Name}</p>
+            <p className={classes.productPrice}>${Price}</p>
             <img
                 src={removeIcon}
                 alt="remove-product-icon"

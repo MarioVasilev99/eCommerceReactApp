@@ -18,7 +18,6 @@ const shoppingCartSlice = createSlice({
     initialState: shoppingCartInitialState,
     reducers: {
         addItemToCart(state, action: PayloadAction<IProduct>) {
-            debugger;
             state.totalSum = state.totalSum + action.payload.price;
             state.products.push(action.payload);
         },

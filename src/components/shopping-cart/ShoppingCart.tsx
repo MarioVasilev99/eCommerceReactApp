@@ -1,9 +1,11 @@
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { hideCart } from "../../reducers/shopping-cart/cart-slice";
 import closeIcon from "../../assets/images/close-icon.svg";
 import ShoppingCartItem from "./ShoppingCartItem";
+import { RootState } from "../../reducers";
+import { IProduct } from "./../../reducers/products/products-page-slice";
 
 const useStyles = makeStyles({
     cartWrapper: {
@@ -16,6 +18,9 @@ const useStyles = makeStyles({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        "& p": {
+            fontSize: "18px",
+        },
     },
     cart: {
         position: "relative",
@@ -54,6 +59,21 @@ const ShoppingCart = (): JSX.Element => {
         dispatch(hideCart());
     };
 
+    const itemsInCart = useSelector(
+        (state: RootState) => state.shoppingCart.products
+    );
+
+    const itemsInCartAsElements = itemsInCart.map((i: IProduct) => {
+        return (
+            <ShoppingCartItem
+                Id={i.id}
+                ImageUrl={i.image}
+                Name={i.name}
+                Price={i.price}
+            />
+        );
+    });
+
     return (
         <div className={classes.cartWrapper}>
             <div className={classes.cart}>
@@ -64,9 +84,7 @@ const ShoppingCart = (): JSX.Element => {
                     onClick={handleHideCartClick}
                 />
                 <h1 className={classes.heading}>Shopping Cart</h1>
-                <ul>
-                    <ShoppingCartItem />
-                </ul>
+                <ul>{itemsInCartAsElements}</ul>
             </div>
         </div>
     );
