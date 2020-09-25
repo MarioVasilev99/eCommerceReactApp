@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/styles";
 import { useDispatch } from "react-redux";
 import { hideCart } from "../../reducers/shopping-cart/cart-slice";
+import closeIcon from "../../assets/images/close-icon.svg";
 
 const useStyles = makeStyles({
     cartWrapper: {
@@ -16,10 +17,18 @@ const useStyles = makeStyles({
         alignItems: "center",
     },
     cart: {
+        position: "relative",
         backgroundColor: "white",
         height: "400px",
         width: "800px",
         borderRadius: "4px",
+    },
+    closeIcon: {
+        position: "absolute",
+        top: "-15px",
+        left: "-15px",
+        width: "30px",
+        height: "30px",
     },
 });
 
@@ -32,8 +41,14 @@ const ShoppingCart = (): JSX.Element => {
     };
 
     return (
-        <div className={classes.cartWrapper} onClick={handleHideCartClick}>
+        <div className={classes.cartWrapper}>
             <div className={classes.cart}>
+                <img
+                    className={classes.closeIcon}
+                    src={closeIcon}
+                    alt="close-icon"
+                    onClick={handleHideCartClick}
+                />
                 <ul></ul>
             </div>
         </div>
