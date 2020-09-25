@@ -3,7 +3,8 @@ import { makeStyles } from "@material-ui/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { hideCart } from "../../reducers/shopping-cart/cart-slice";
 import closeIcon from "../../assets/images/close-icon.svg";
-import ShoppingCartItem from "./ShoppingCartItem";
+import cartIcon from "../../assets/images/cart.svg";
+import ShoppingCartItem, { ICartItemProps } from "./ShoppingCartItem";
 import { RootState } from "../../reducers";
 import { IProduct } from "./../../reducers/products/products-page-slice";
 
@@ -25,9 +26,10 @@ const useStyles = makeStyles({
     cart: {
         position: "relative",
         backgroundColor: "white",
-        height: "400px",
+        maxHeight: "600px",
+        minHeight: "200px",
         width: "800px",
-        borderRadius: "4px",
+        borderRadius: "10px",
     },
     heading: {
         backgroundColor: "#ED1C24",
@@ -49,6 +51,26 @@ const useStyles = makeStyles({
         width: "30px",
         height: "30px",
     },
+    itemsWrapper: {
+        minHeight: "100px",
+        maxHeight: "400px",
+        overflow: "hidden",
+        overflowY: "scroll",
+    },
+    emptyCartWrapper: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "100px",
+    },
+    completeButton: {
+        margin: "0.2em",
+        padding: "1em",
+        backgroundColor: "#16db6b",
+        textAlign: "center",
+        borderRadius: "10px",
+        color: "#ffffff",
+    },
 });
 
 const ShoppingCart = (): JSX.Element => {
@@ -63,16 +85,22 @@ const ShoppingCart = (): JSX.Element => {
         (state: RootState) => state.shoppingCart.products
     );
 
-    const itemsInCartAsElements = itemsInCart.map((i: IProduct) => {
-        return (
-            <ShoppingCartItem
-                Id={i.id}
-                ImageUrl={i.image}
-                Name={i.name}
-                Price={i.price}
-            />
-        );
-    });
+    let itemsInCartAsElements: JSX.Element[];
+    if (itemsInCart.length > 0) {
+        const elements = itemsInCart.map((i: IProduct) => {
+            return (
+                <ShoppingCartItem
+                    key={i.id}
+                    Id={i.id}
+                    ImageUrl={i.image}
+                    Name={i.name}
+                    Price={i.price}
+                />
+            );
+        });
+
+        itemsInCartAsElements = elements;
+    }
 
     return (
         <div className={classes.cartWrapper}>
@@ -84,7 +112,27 @@ const ShoppingCart = (): JSX.Element => {
                     onClick={handleHideCartClick}
                 />
                 <h1 className={classes.heading}>Shopping Cart</h1>
-                <ul>{itemsInCartAsElements}</ul>
+                <ul className={classes.itemsWrapper}>
+                    {itemsInCart.length > 0 ? (
+                        itemsInCart.map((i: IProduct) => {
+                            return (
+                                <ShoppingCartItem
+                                    key={i.id}
+                                    Id={i.id}
+                                    ImageUrl={i.image}
+                                    Name={i.name}
+                                    Price={i.price}
+                                />
+                            );
+                        })
+                    ) : (
+                        <div className={classes.emptyCartWrapper}>
+                            <img src={cartIcon} alt="shopping-cart-icon" />
+                            <p>Your shopping cart is empty</p>
+                        </div>
+                    )}
+                </ul>
+                <p className={classes.completeButton}>Complete Order</p>
             </div>
         </div>
     );

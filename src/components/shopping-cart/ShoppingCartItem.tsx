@@ -38,19 +38,19 @@ const useStyles = makeStyles({
     },
 });
 
-type TProps = {
+export interface ICartItemProps {
     Id: number;
     ImageUrl: string;
     Name: string;
     Price: number;
-};
+}
 
 const ShoppingCartItem = ({
     Id,
     ImageUrl,
     Name,
     Price,
-}: TProps): JSX.Element => {
+}: ICartItemProps): JSX.Element => {
     const classes = useStyles();
     return (
         <li className={classes.itemWrapper}>
