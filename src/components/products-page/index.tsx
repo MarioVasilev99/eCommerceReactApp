@@ -7,8 +7,6 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         productsWrapper: {
-            position: "relative",
-            overflow: "hidden",
             display: "grid",
             [theme.breakpoints.between("lg", "xl")]: {
                 gridTemplateColumns: "repeat(3, 300px)",

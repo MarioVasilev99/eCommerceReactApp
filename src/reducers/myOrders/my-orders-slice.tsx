@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { INewOrderInfo } from "../../components/shopping-cart/ShoppingCart";
 import { IProduct } from "./../products/products-page-slice";
 
 export interface IOrder {
@@ -49,8 +50,16 @@ const myOrdersSlice = createSlice({
     name: "myOrders",
     initialState: ordersInitialState,
     reducers: {
-        addOrder(state, action: PayloadAction) {
+        addOrder(state, action: PayloadAction<INewOrderInfo>) {
             const lastOrderId = state.myOrders.length;
+            const newOrder: IOrder = {
+                id: lastOrderId + 1,
+                products: action.payload.products,
+                totalPrice: action.payload.totalPrice,
+                status: "Completed",
+            };
+
+            state.myOrders.push(newOrder);
         },
     },
 });

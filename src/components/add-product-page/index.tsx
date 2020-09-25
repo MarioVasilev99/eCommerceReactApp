@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../reducers/products/products-page-slice";
 import { makeStyles } from "@material-ui/styles";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
     headingWrapper: {
@@ -74,6 +75,7 @@ export type NewProductData = {
 
 const AddProductPage = (): JSX.Element => {
     const classes = useStyles();
+    const history = useHistory();
 
     const { register, handleSubmit, reset } = useForm<NewProductData>();
 
@@ -81,6 +83,7 @@ const AddProductPage = (): JSX.Element => {
     const onSubmit = (data: NewProductData) => {
         dispatch(addProduct(data));
         reset();
+        history.push("/");
     };
 
     return (
@@ -102,6 +105,7 @@ const AddProductPage = (): JSX.Element => {
                 <input
                     placeholder="Price"
                     type="number"
+                    step="0.0001"
                     id="price"
                     name="price"
                     ref={register}

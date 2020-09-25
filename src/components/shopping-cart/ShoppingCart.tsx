@@ -1,7 +1,8 @@
-import React, { SyntheticEvent } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/styles";
 import { useDispatch, useSelector } from "react-redux";
-import { hideCart } from "../../reducers/shopping-cart/cart-slice";
+import { hideCart, resetCart } from "../../reducers/shopping-cart/cart-slice";
+import { addOrder } from "../../reducers/myOrders/my-orders-slice";
 import closeIcon from "../../assets/images/close-icon.svg";
 import cartIcon from "../../assets/images/cart.svg";
 import ShoppingCartItem, { ICartItemProps } from "./ShoppingCartItem";
@@ -55,7 +56,7 @@ const useStyles = makeStyles({
         minHeight: "100px",
         maxHeight: "400px",
         overflow: "hidden",
-        overflowY: "scroll",
+        overflowY: "auto",
     },
     emptyCartWrapper: {
         display: "flex",
@@ -76,31 +77,38 @@ const useStyles = makeStyles({
     },
 });
 
+export interface INewOrderInfo {
+    products: IProduct[];
+    totalPrice: number;
+}
+
 const ShoppingCart = (): JSX.Element => {
+    const dispatch = useDispatch();
+
     const itemsInCart = useSelector(
         (state: RootState) => state.shoppingCart.products
     );
 
-    let itemsInCartAsElements: JSX.Element[];
-    if (itemsInCart.length > 0) {
-        const elements = itemsInCart.map((i: IProduct) => {
-            return (
-                <ShoppingCartItem
-                    key={i.id}
-                    Id={i.id}
-                    ImageUrl={i.image}
-                    Name={i.name}
-                    Price={i.price}
-                />
-            );
-        });
+    const orderTotalSum = useSelector(
+        (state: RootState) => state.shoppingCart.totalSum
+    );
 
-        itemsInCartAsElements = elements;
-    }
-
-    const dispatch = useDispatch();
     const handleHideCartClick: React.MouseEventHandler = () => {
         dispatch(hideCart());
+    };
+
+    const handleCompleteButtonOnClick: React.MouseEventHandler = () => {
+        if (itemsInCart.length === 0) {
+            return;
+        }
+
+        const newOrderInfo: INewOrderInfo = {
+            products: itemsInCart,
+            totalPrice: orderTotalSum,
+        };
+
+        dispatch(addOrder(newOrderInfo));
+        dispatch(resetCart());
     };
 
     const handleCompleteButtonOnLoad = () => {
@@ -149,6 +157,7 @@ const ShoppingCart = (): JSX.Element => {
                 <p
                     id="complete-order-button"
                     className={classes.completeButton}
+                    onClick={handleCompleteButtonOnClick}
                 >
                     Complete Order
                 </p>

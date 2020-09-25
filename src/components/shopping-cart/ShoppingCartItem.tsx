@@ -63,7 +63,7 @@ const ShoppingCartItem = ({
         <li className={classes.itemWrapper}>
             <img
                 src={ImageUrl}
-                alt="product-image"
+                alt="product"
                 className={classes.productImage}
             />
             <p className={classes.productName}>{Name}</p>

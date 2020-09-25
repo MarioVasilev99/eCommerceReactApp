@@ -48,7 +48,7 @@ type TProps = {
 const Order = ({ id, products, totalPrice, status }: TProps): JSX.Element => {
     const classes = useStyles();
     const productsNames = products.map((product: IProduct) => {
-        return <li>{product.name}</li>;
+        return <li key={product.id}>{product.name}</li>;
     });
 
     return (

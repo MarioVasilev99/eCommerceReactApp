@@ -30,6 +30,11 @@ const shoppingCartSlice = createSlice({
 
             state.products.splice(itemToRemoveIndex, 1);
         },
+        resetCart(state) {
+            state.products = [];
+            state.totalSum = 0.0;
+            state.isVisible = false;
+        },
         displayCart(state) {
             state.isVisible = true;
         },
@@ -42,6 +47,7 @@ const shoppingCartSlice = createSlice({
 export const {
     addItemToCart,
     removeItemFromCart,
+    resetCart,
     displayCart,
     hideCart,
 } = shoppingCartSlice.actions;
