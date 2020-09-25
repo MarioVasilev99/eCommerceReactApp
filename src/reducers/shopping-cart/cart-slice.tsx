@@ -1,4 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { useSelector } from "react-redux";
+import { RootState } from "..";
 import { IProduct } from "./../products/products-page-slice";
 
 interface ICartInitialState {
@@ -21,6 +23,13 @@ const shoppingCartSlice = createSlice({
             state.totalSum = state.totalSum + action.payload.price;
             state.products.push(action.payload);
         },
+        removeItemFromCart(state, action: PayloadAction<number>) {
+            const itemToRemoveIndex = state.products.findIndex(
+                (p: IProduct) => p.id === action.payload
+            );
+
+            state.products.splice(itemToRemoveIndex, 1);
+        },
         displayCart(state) {
             state.isVisible = true;
         },
@@ -32,6 +41,7 @@ const shoppingCartSlice = createSlice({
 
 export const {
     addItemToCart,
+    removeItemFromCart,
     displayCart,
     hideCart,
 } = shoppingCartSlice.actions;

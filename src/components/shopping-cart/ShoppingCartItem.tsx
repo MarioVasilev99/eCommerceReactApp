@@ -1,6 +1,8 @@
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
 import removeIcon from "../../assets/images/delete-icon.svg";
+import { useDispatch } from "react-redux";
+import { removeItemFromCart } from "../../reducers/shopping-cart/cart-slice";
 
 const useStyles = makeStyles({
     itemWrapper: {
@@ -51,6 +53,11 @@ const ShoppingCartItem = ({
     Name,
     Price,
 }: ICartItemProps): JSX.Element => {
+    const dispatch = useDispatch();
+    const handleOnClickRemoveItem = (id: number) => {
+        dispatch(removeItemFromCart(id));
+    };
+
     const classes = useStyles();
     return (
         <li className={classes.itemWrapper}>
@@ -65,6 +72,7 @@ const ShoppingCartItem = ({
                 src={removeIcon}
                 alt="remove-product-icon"
                 className={classes.removeProductIcon}
+                onClick={() => handleOnClickRemoveItem(Id)}
             />
         </li>
     );

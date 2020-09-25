@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import { makeStyles } from "@material-ui/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { hideCart } from "../../reducers/shopping-cart/cart-slice";
@@ -62,6 +62,9 @@ const useStyles = makeStyles({
         justifyContent: "center",
         alignItems: "center",
         minHeight: "100px",
+        "& img": {
+            marginRight: "0.5em",
+        },
     },
     completeButton: {
         margin: "0.2em",
@@ -74,13 +77,6 @@ const useStyles = makeStyles({
 });
 
 const ShoppingCart = (): JSX.Element => {
-    const classes = useStyles();
-
-    const dispatch = useDispatch();
-    const handleHideCartClick: React.MouseEventHandler = (e) => {
-        dispatch(hideCart());
-    };
-
     const itemsInCart = useSelector(
         (state: RootState) => state.shoppingCart.products
     );
@@ -102,8 +98,26 @@ const ShoppingCart = (): JSX.Element => {
         itemsInCartAsElements = elements;
     }
 
+    const dispatch = useDispatch();
+    const handleHideCartClick: React.MouseEventHandler = () => {
+        dispatch(hideCart());
+    };
+
+    const handleCompleteButtonOnLoad = () => {
+        const completeButton = document.getElementById("complete-order-button");
+
+        if (completeButton !== null && itemsInCart.length === 0) {
+            completeButton.style.backgroundColor = "#aaaba9";
+            completeButton.style.color = "#000000";
+        }
+    };
+
+    const classes = useStyles();
     return (
-        <div className={classes.cartWrapper}>
+        <div
+            className={classes.cartWrapper}
+            onLoad={() => handleCompleteButtonOnLoad()}
+        >
             <div className={classes.cart}>
                 <img
                     className={classes.closeIcon}
@@ -132,7 +146,12 @@ const ShoppingCart = (): JSX.Element => {
                         </div>
                     )}
                 </ul>
-                <p className={classes.completeButton}>Complete Order</p>
+                <p
+                    id="complete-order-button"
+                    className={classes.completeButton}
+                >
+                    Complete Order
+                </p>
             </div>
         </div>
     );
