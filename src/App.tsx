@@ -7,7 +7,7 @@ import AddProductPage from "./components/add-product-page/index";
 import MyOrders from "./components/my-orders/MyOrders";
 import { useSelector } from "react-redux";
 import { RootState } from "./reducers";
-import ShoppingCart from "./components/shopping-cart/shopping-cart";
+import ShoppingCart from "./components/shopping-cart/ShoppingCart";
 
 const useStyles = makeStyles({
     root: {

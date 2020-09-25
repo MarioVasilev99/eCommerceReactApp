@@ -11,7 +11,7 @@ const useStyles = makeStyles({
         gridTemplateColumns: "repeat(6, 1fr)",
         backgroundColor: "#FFFFFF",
         height: "80px",
-        minWidth: "1920px",
+        minWidth: "100vw",
         filter: "drop-shadow(4px 0px 2px rgba(0, 0, 0, 0.25))",
     },
     signature: {

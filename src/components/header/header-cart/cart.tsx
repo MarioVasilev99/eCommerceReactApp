@@ -4,7 +4,6 @@ import cartImg from "../../../assets/images/cart.svg";
 import circle from "../../../assets/images/circle.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../reducers";
-import ShoppingCart from "../../shopping-cart/shopping-cart";
 import { displayCart } from "../../../reducers/shopping-cart/cart-slice";
 
 const UseStyles = makeStyles({
