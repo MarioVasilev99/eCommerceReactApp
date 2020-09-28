@@ -12,6 +12,7 @@ import ShoppingCart from "./components/shopping-cart/ShoppingCart";
 const useStyles = makeStyles({
     root: {
         minWidth: "80%",
+        height: "auto",
     },
 });
 

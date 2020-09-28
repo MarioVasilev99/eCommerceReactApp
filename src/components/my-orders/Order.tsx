@@ -14,11 +14,15 @@ const useStyles = makeStyles({
         "&:first-child": {
             marginTop: "2em",
         },
+        overflow: "hidden",
     },
     cell: {
-        textAlign: "center",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
         width: "100%",
-        padding: "1em 0 1em 0",
+        height: "100%",
+        padding: "1.5em 0",
         borderRight: "2px solid #C4C4C4",
         "&:last-child": {
             borderRight: "none",
@@ -29,6 +33,13 @@ const useStyles = makeStyles({
     },
     productsList: {
         gridColumn: "3 / span 5",
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "start",
+    },
+    product: {
+        width: "100%",
+        marginLeft: "2.5em",
     },
     price: {
         gridColumn: "8 / span 2",
@@ -48,17 +59,28 @@ type TProps = {
 const Order = ({ id, products, totalPrice, status }: TProps): JSX.Element => {
     const classes = useStyles();
     const productsNames = products.map((product: IProduct) => {
-        return <li key={product.id}>{product.name}</li>;
+        return (
+            <li key={product.id} className={classes.product}>
+                -{product.name}
+            </li>
+        );
     });
 
+    const roundedTotalPrice = totalPrice.toFixed(2);
     return (
         <li className={classes.orderListItem}>
-            <p className={`${classes.orderId} ${classes.cell}`}>Order # {id}</p>
+            <div className={`${classes.orderId} ${classes.cell}`}>
+                <p>Order # {id}</p>
+            </div>
             <ul className={`${classes.productsList} ${classes.cell}`}>
                 {productsNames}
             </ul>
-            <p className={`${classes.price} ${classes.cell}`}>{totalPrice}</p>
-            <p className={`${classes.status} ${classes.cell}`}>{status}</p>
+            <div className={`${classes.price} ${classes.cell}`}>
+                <p>{roundedTotalPrice}</p>
+            </div>
+            <div className={`${classes.status} ${classes.cell}`}>
+                <p>{status}</p>
+            </div>
         </li>
     );
 };
