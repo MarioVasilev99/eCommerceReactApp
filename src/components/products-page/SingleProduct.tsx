@@ -1,5 +1,5 @@
 import React from "react";
-import ProductCartButton from "./product-cart-button";
+import ProductCartButton from "./ProductCartButton";
 import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({

@@ -3,7 +3,7 @@ import ProductCart from "../../assets/images/cart-product.svg";
 import { makeStyles } from "@material-ui/styles";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../reducers";
-import { IProduct } from "./../../reducers/products/products-page-slice";
+import { IProduct } from "../../reducers/products/products-page-slice";
 import { addItemToCart } from "../../reducers/shopping-cart/cart-slice";
 
 const useStyles = makeStyles({

@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/styles";
 import { NavLink } from "react-router-dom";
 import React from "react";
 import HeaderMenuList from "./header-menu/HeaderMenuList";
-import Cart from "./header-cart/cart";
+import Cart from "./header-cart/Cart";
 import logo from "../../assets/images/logo.svg";
 
 const useStyles = makeStyles({

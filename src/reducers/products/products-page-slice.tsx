@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { NewProductData } from "../../components/add-product-page/index";
+import { NewProductData } from "../../components/add-product-page/AddProductPage";
 
 export interface IProduct {
     id: number;
