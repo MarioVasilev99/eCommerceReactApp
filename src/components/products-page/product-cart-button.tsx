@@ -17,6 +17,9 @@ const useStyles = makeStyles({
             flex: "0 0 40px",
             height: "40px",
         },
+        "&:hover": {
+            cursor: "pointer",
+        },
     },
 });
 

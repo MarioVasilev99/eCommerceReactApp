@@ -63,6 +63,9 @@ const useStyles = makeStyles({
             color: "#FFFFFF",
             borderRadius: "5px",
             paddingLeft: "0",
+            "&:hover": {
+                cursor: "pointer",
+            },
         },
     },
 });

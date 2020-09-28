@@ -12,6 +12,9 @@ const UseStyles = makeStyles({
         top: "5px",
         left: "0",
         marginLeft: "4em",
+        "&:hover": {
+            cursor: "pointer",
+        },
     },
     cart: {
         position: "relative",
