@@ -1,8 +1,5 @@
 import React from "react";
 import HeaderMenuListItem from "./HeaderMenuListItem";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../reducers";
-import { ILinkItemsProps } from "./../../../reducers/header/header-interfaces";
 import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
@@ -18,19 +15,18 @@ const useStyles = makeStyles({
 const HeaderMenuList = (): JSX.Element => {
     const classes = useStyles();
 
-    const navigationMenuLinks: ILinkItemsProps[] = useSelector(
-        (state: RootState) => state.header.linkItems
+    return (
+        <ul className={classes.navigationBar}>
+            <HeaderMenuListItem pageName="Products" pageUrl="/" />
+
+            <HeaderMenuListItem pageName="My Orders" pageUrl="/orders" />
+
+            <HeaderMenuListItem
+                pageName="Add Product"
+                pageUrl="/products/add"
+            />
+        </ul>
     );
-
-    const headerItems = navigationMenuLinks.map((element) => (
-        <HeaderMenuListItem
-            key={element.id}
-            pageName={element.pageName}
-            pageUrl={element.pageUrl}
-        />
-    ));
-
-    return <ul className={classes.navigationBar}>{headerItems}</ul>;
 };
 
 export default HeaderMenuList;
