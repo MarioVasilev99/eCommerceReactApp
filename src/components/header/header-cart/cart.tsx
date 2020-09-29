@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 import cartImg from "../../../assets/images/cart.svg";
 import circle from "../../../assets/images/circle.svg";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../../reducers";
-import { displayCart } from "../../../reducers/shopping-cart/cart-slice";
+import ShoppingCart from "../../shopping-cart/ShoppingCart";
 
 const UseStyles = makeStyles({
+    root: {},
     cartWrapper: {
-        position: "relative",
-        top: "5px",
-        left: "0",
+        position: "absolute",
+        top: 10,
+        right: 20,
         marginLeft: "4em",
         "&:hover": {
             cursor: "pointer",
@@ -18,13 +19,13 @@ const UseStyles = makeStyles({
     },
     cart: {
         position: "relative",
-        top: "0",
-        left: "0",
+        top: 0,
+        right: 0,
     },
     circle: {
-        position: "absolute",
-        top: "35px",
-        right: "-10px",
+        position: "relative",
+        top: 7,
+        right: 15,
     },
     counter: {
         position: "relative",
@@ -32,25 +33,47 @@ const UseStyles = makeStyles({
         right: "-46px",
         color: "#FFFFFF",
     },
+    cartPopupWrapper: {},
 });
 
 const Cart = (): JSX.Element => {
+    const [isShoppingCartVisible, setVisibility] = useState(false);
+
     const classes = UseStyles();
 
     const cartItemsCount = useSelector(
         (state: RootState) => state.shoppingCart.products.length
     );
 
-    const dispatch = useDispatch();
-    const handleCartClick: React.MouseEventHandler = (e) => {
-        dispatch(displayCart());
+    const handleClickDisplayCart: React.MouseEventHandler = () => {
+        setVisibility(true);
+    };
+
+    const hideCart = () => {
+        debugger;
+        setVisibility(false);
     };
 
     return (
-        <div onClick={handleCartClick} className={classes.cartWrapper}>
-            <img className={classes.cart} src={cartImg} alt="cart" />
-            <img className={classes.circle} src={circle} alt="items-count" />
-            <p className={classes.counter}>{cartItemsCount}</p>
+        <div className={classes.root}>
+            <div
+                className={classes.cartWrapper}
+                onClick={handleClickDisplayCart}
+            >
+                <img className={classes.cart} src={cartImg} alt="cart" />
+                <img
+                    className={classes.circle}
+                    src={circle}
+                    alt="items-count"
+                />
+                <p className={classes.counter}>{cartItemsCount}</p>
+            </div>
+
+            <div className={classes.cartPopupWrapper}>
+                {isShoppingCartVisible ? (
+                    <ShoppingCart hideCart={hideCart} />
+                ) : null}
+            </div>
         </div>
     );
 };

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 import { useDispatch, useSelector } from "react-redux";
-import { hideCart, resetCart } from "../../reducers/shopping-cart/cart-slice";
+import { resetCart } from "../../reducers/shopping-cart/cart-slice";
 import { addOrder } from "../../reducers/myOrders/my-orders-slice";
 import closeIcon from "../../assets/images/close-icon.svg";
 import cartIcon from "../../assets/images/cart.svg";
@@ -10,11 +10,11 @@ import { RootState } from "../../reducers";
 import { IProduct } from "./../../reducers/products/products-page-slice";
 
 const useStyles = makeStyles({
-    cartWrapper: {
+    cartVisibleWrapper: {
         width: "100%",
-        height: "100%",
+        minHeight: "100%",
         backgroundColor: "rgba(0, 0, 0, 0.7)",
-        position: "absolute",
+        position: "fixed",
         top: "0",
         left: "0",
         display: "flex",
@@ -82,9 +82,11 @@ export interface INewOrderInfo {
     totalPrice: number;
 }
 
-const ShoppingCart = (): JSX.Element => {
-    const dispatch = useDispatch();
+type TProps = {
+    hideCart: () => void;
+};
 
+const ShoppingCart = ({ hideCart }: TProps): JSX.Element => {
     const itemsInCart = useSelector(
         (state: RootState) => state.shoppingCart.products
     );
@@ -93,10 +95,7 @@ const ShoppingCart = (): JSX.Element => {
         (state: RootState) => state.shoppingCart.totalSum
     );
 
-    const handleHideCartClick: React.MouseEventHandler = () => {
-        dispatch(hideCart());
-    };
-
+    const dispatch = useDispatch();
     const handleCompleteButtonOnClick: React.MouseEventHandler = () => {
         if (itemsInCart.length === 0) {
             return;
@@ -123,15 +122,16 @@ const ShoppingCart = (): JSX.Element => {
     const classes = useStyles();
     return (
         <div
-            className={classes.cartWrapper}
-            onLoad={() => handleCompleteButtonOnLoad()}
+            className={classes.cartVisibleWrapper}
+            id="shopping-cart"
+            onLoad={handleCompleteButtonOnLoad}
         >
             <div className={classes.cart}>
                 <img
                     className={classes.closeIcon}
                     src={closeIcon}
                     alt="close-icon"
-                    onClick={handleHideCartClick}
+                    onClick={hideCart}
                 />
                 <h1 className={classes.heading}>Shopping Cart</h1>
                 <ul className={classes.itemsWrapper}>

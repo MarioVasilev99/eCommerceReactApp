@@ -1,6 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { useSelector } from "react-redux";
-import { RootState } from "..";
 import { IProduct } from "./../products/products-page-slice";
 
 interface ICartInitialState {
@@ -33,7 +31,6 @@ const shoppingCartSlice = createSlice({
         resetCart(state) {
             state.products = [];
             state.totalSum = 0.0;
-            state.isVisible = false;
         },
         displayCart(state) {
             state.isVisible = true;

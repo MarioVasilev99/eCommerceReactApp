@@ -1,8 +1,7 @@
 import { makeStyles } from "@material-ui/styles";
 import { NavLink } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 import HeaderMenuList from "./header-menu/HeaderMenuList";
-import Cart from "./header-cart/Cart";
 import logo from "../../assets/images/logo.svg";
 
 const useStyles = makeStyles({
@@ -12,7 +11,6 @@ const useStyles = makeStyles({
         backgroundColor: "#FFFFFF",
         height: "80px",
         maxWidth: "100vw",
-        overflow: "hidden",
         filter: "drop-shadow(4px 0px 2px rgba(0, 0, 0, 0.25))",
     },
     signature: {
@@ -57,7 +55,6 @@ const Header = (): JSX.Element => {
             </div>
             <div className={classes.navigationArea}>
                 <HeaderMenuList />
-                <Cart />
             </div>
         </header>
     );

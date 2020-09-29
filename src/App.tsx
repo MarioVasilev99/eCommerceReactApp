@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/styles";
-import React from "react";
+import React, { useState } from "react";
 import { Route } from "react-router-dom";
 import Header from "./components/header/header";
 import ProductsPage from "./components/products-page/Products";
@@ -8,6 +8,7 @@ import MyOrders from "./components/my-orders/MyOrders";
 import { useSelector } from "react-redux";
 import { RootState } from "./reducers";
 import ShoppingCart from "./components/shopping-cart/ShoppingCart";
+import Cart from "./components/header/header-cart/Cart";
 
 const useStyles = makeStyles({
     root: {
@@ -19,13 +20,10 @@ const useStyles = makeStyles({
 const App = (): JSX.Element => {
     const classes = useStyles();
 
-    const isShoppingCartVisible = useSelector(
-        (state: RootState) => state.shoppingCart.isVisible
-    );
-
     return (
         <div className={classes.root}>
             <Header />
+            <Cart />
             <Route exact path="/" render={() => <ProductsPage />} />
             <Route
                 exact
@@ -33,7 +31,6 @@ const App = (): JSX.Element => {
                 render={() => <AddProductPage />}
             />
             <Route exact path="/orders" render={() => <MyOrders />} />
-            {isShoppingCartVisible ? <ShoppingCart /> : null}
         </div>
     );
 };
