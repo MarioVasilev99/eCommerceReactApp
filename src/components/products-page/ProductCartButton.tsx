@@ -40,7 +40,7 @@ const ProductCartButton = ({ productId }: TProps): JSX.Element => {
             throw new Error("Product not found.");
         }
 
-        dispatch(addItemToCart(product));
+        dispatch(addItemToCart(product.id));
     };
 
     const classes = useStyles();

@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { resetCart } from "../../reducers/shopping-cart/cart-slice";
 import { addOrder } from "../../reducers/myOrders/my-orders-slice";
 import closeIcon from "../../assets/images/close-icon.svg";
 import cartIcon from "../../assets/images/cart.svg";
-import ShoppingCartItem, { ICartItemProps } from "./ShoppingCartItem";
+import ShoppingCartItem from "./ShoppingCartItem";
 import { RootState } from "../../reducers";
 import { IProduct } from "./../../reducers/products/products-page-slice";
+import { createSelector } from "reselect";
 
 const useStyles = makeStyles({
-    cartVisibleWrapper: {
+    cartWrapper: {
         width: "100%",
         minHeight: "100%",
         backgroundColor: "rgba(0, 0, 0, 0.7)",
@@ -87,12 +88,37 @@ type TProps = {
 };
 
 const ShoppingCart = ({ hideCart }: TProps): JSX.Element => {
-    const itemsInCart = useSelector(
-        (state: RootState) => state.shoppingCart.products
+    const selectCartProductsIds = (state: RootState) =>
+        state.shoppingCart.productsIds;
+
+    const selectProducts = (state: RootState) => state.productsPage.products;
+
+    const selectProductsInCart = createSelector(
+        [selectCartProductsIds, selectProducts],
+        (productsIds, products) => {
+            const productsInCart = products.filter((p: IProduct) =>
+                productsIds.includes(p.id)
+            );
+
+            return productsInCart;
+        }
     );
 
-    const orderTotalSum = useSelector(
-        (state: RootState) => state.shoppingCart.totalSum
+    const selectOrderTotalSum = createSelector(
+        [selectProductsInCart],
+        (productsInCart) => {
+            return productsInCart.reduce((totalPrice, product) => {
+                return totalPrice + product.price;
+            }, 0);
+        }
+    );
+
+    const itemsInCart = useSelector((state: RootState) =>
+        selectProductsInCart(state)
+    );
+
+    const orderTotalSum = useSelector((state: RootState) =>
+        selectOrderTotalSum(state)
     );
 
     const dispatch = useDispatch();
@@ -122,7 +148,7 @@ const ShoppingCart = ({ hideCart }: TProps): JSX.Element => {
     const classes = useStyles();
     return (
         <div
-            className={classes.cartVisibleWrapper}
+            className={classes.cartWrapper}
             id="shopping-cart"
             onLoad={handleCompleteButtonOnLoad}
         >

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 import cartImg from "../../../assets/images/cart.svg";
 import circle from "../../../assets/images/circle.svg";
@@ -39,10 +39,11 @@ const UseStyles = makeStyles({
 const Cart = (): JSX.Element => {
     const [isShoppingCartVisible, setVisibility] = useState(false);
 
-    const classes = UseStyles();
+    const selectCartItemsCount = (state: RootState) =>
+        state.shoppingCart.productsIds.length;
 
-    const cartItemsCount = useSelector(
-        (state: RootState) => state.shoppingCart.products.length
+    const cartItemsCount = useSelector((state: RootState) =>
+        selectCartItemsCount(state)
     );
 
     const handleClickDisplayCart: React.MouseEventHandler = () => {
@@ -50,10 +51,10 @@ const Cart = (): JSX.Element => {
     };
 
     const hideCart = () => {
-        debugger;
         setVisibility(false);
     };
 
+    const classes = UseStyles();
     return (
         <div className={classes.root}>
             <div

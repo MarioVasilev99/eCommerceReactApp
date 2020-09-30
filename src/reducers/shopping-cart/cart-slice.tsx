@@ -1,42 +1,31 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IProduct } from "./../products/products-page-slice";
 
 interface ICartInitialState {
-    products: IProduct[];
-    totalSum: number;
-    isVisible: boolean;
+    productsIds: number[];
 }
 
 const shoppingCartInitialState: ICartInitialState = {
-    products: [],
-    totalSum: 0.0,
-    isVisible: false,
+    productsIds: [],
 };
 
 const shoppingCartSlice = createSlice({
     name: "cartSlice",
     initialState: shoppingCartInitialState,
     reducers: {
-        addItemToCart(state, action: PayloadAction<IProduct>) {
-            state.totalSum = state.totalSum + action.payload.price;
-            state.products.push(action.payload);
+        addItemToCart(state, action: PayloadAction<number>) {
+            state.productsIds.push(action.payload);
         },
         removeItemFromCart(state, action: PayloadAction<number>) {
-            const itemToRemoveIndex = state.products.findIndex(
-                (p: IProduct) => p.id === action.payload
+            const itemToRemoveIndex = state.productsIds.findIndex(
+                (pId: number) => {
+                    return pId === action.payload;
+                }
             );
 
-            state.products.splice(itemToRemoveIndex, 1);
+            state.productsIds.splice(itemToRemoveIndex, 1);
         },
         resetCart(state) {
-            state.products = [];
-            state.totalSum = 0.0;
-        },
-        displayCart(state) {
-            state.isVisible = true;
-        },
-        hideCart(state) {
-            state.isVisible = false;
+            state.productsIds = [];
         },
     },
 });
@@ -45,7 +34,5 @@ export const {
     addItemToCart,
     removeItemFromCart,
     resetCart,
-    displayCart,
-    hideCart,
 } = shoppingCartSlice.actions;
 export default shoppingCartSlice;
