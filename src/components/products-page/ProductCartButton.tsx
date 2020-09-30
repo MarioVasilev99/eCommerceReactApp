@@ -28,7 +28,9 @@ type TProps = {
 };
 
 const ProductCartButton = ({ productId }: TProps): JSX.Element => {
+    const classes = useStyles();
     const dispatch = useDispatch();
+
     const products = useSelector(
         (state: RootState) => state.productsPage.products
     );
@@ -43,7 +45,6 @@ const ProductCartButton = ({ productId }: TProps): JSX.Element => {
         dispatch(addItemToCart(product.id));
     };
 
-    const classes = useStyles();
     return (
         <div className={classes.cartWrapper} onClick={handleClick}>
             <img src={ProductCart} alt="product-cart" />

@@ -53,12 +53,13 @@ const ShoppingCartItem = ({
     Name,
     Price,
 }: ICartItemProps): JSX.Element => {
+    const classes = useStyles();
     const dispatch = useDispatch();
+
     const handleOnClickRemoveItem = (id: number) => {
         dispatch(removeItemFromCart(id));
     };
 
-    const classes = useStyles();
     return (
         <li className={classes.itemWrapper}>
             <img

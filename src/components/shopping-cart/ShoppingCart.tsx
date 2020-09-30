@@ -96,6 +96,9 @@ type TProps = {
 };
 
 const ShoppingCart = ({ hideCart }: TProps): JSX.Element => {
+    const classes = useStyles();
+    const dispatch = useDispatch();
+
     const selectCartProductsIds = (state: RootState) =>
         state.shoppingCart.productsIds;
 
@@ -129,7 +132,6 @@ const ShoppingCart = ({ hideCart }: TProps): JSX.Element => {
         selectOrderTotalSum(state)
     );
 
-    const dispatch = useDispatch();
     const handleCompleteButtonOnClick: React.MouseEventHandler = () => {
         if (itemsInCart.length === 0) {
             return;
@@ -144,7 +146,6 @@ const ShoppingCart = ({ hideCart }: TProps): JSX.Element => {
         dispatch(resetCart());
     };
 
-    const classes = useStyles();
     return (
         <div className={classes.cartWrapper} id="shopping-cart">
             <div className={classes.cart}>

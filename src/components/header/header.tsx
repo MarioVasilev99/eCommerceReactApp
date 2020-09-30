@@ -1,6 +1,6 @@
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { NavLink } from "react-router-dom";
-import React, { useState } from "react";
+import React from "react";
 import HeaderMenuList from "./header-menu/HeaderMenuList";
 import logo from "../../assets/images/logo.svg";
 
