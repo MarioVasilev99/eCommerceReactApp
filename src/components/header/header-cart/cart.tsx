@@ -11,8 +11,7 @@ const UseStyles = makeStyles({
     cartWrapper: {
         position: "absolute",
         top: 10,
-        right: 20,
-        marginLeft: "4em",
+        right: 6,
         "&:hover": {
             cursor: "pointer",
         },
@@ -29,8 +28,9 @@ const UseStyles = makeStyles({
     },
     counter: {
         position: "relative",
-        top: "-16px",
-        right: "-46px",
+        bottom: 16,
+        left: 46,
+        width: 20,
         color: "#FFFFFF",
     },
     cartPopupWrapper: {},

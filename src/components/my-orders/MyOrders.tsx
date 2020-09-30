@@ -15,7 +15,7 @@ const useStyles = makeStyles({
             backgroundColor: "#ED1C24",
             fontFamily: "Roboto",
             fontWeight: "bold",
-            fontSize: "24px",
+            fontSize: 24,
             lineHeight: "28px",
         },
     },

@@ -15,7 +15,7 @@ const useStyles = makeStyles({
         backgroundColor: "#ED1C24",
         "& img": {
             flex: "0 0 40px",
-            height: "40px",
+            height: 40,
         },
         "&:hover": {
             cursor: "pointer",

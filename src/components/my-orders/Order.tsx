@@ -9,8 +9,8 @@ const useStyles = makeStyles({
         alignItems: "center",
         justifyItems: "center",
         border: "2px solid #C4C4C4",
-        fontSize: "18px",
-        marginTop: "7px",
+        fontSize: 18,
+        marginTop: 7,
         "&:first-child": {
             marginTop: "2em",
         },

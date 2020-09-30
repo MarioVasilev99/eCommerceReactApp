@@ -17,8 +17,8 @@ const useStyles = makeStyles((theme: Theme) =>
             justifyItems: "center",
             justifyContent: "center",
             gap: "3em 5em",
-            marginTop: "60px",
-            marginBottom: "60px",
+            marginTop: 60,
+            marginBottom: 60,
         },
     })
 );

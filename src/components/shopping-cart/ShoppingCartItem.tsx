@@ -21,8 +21,8 @@ const useStyles = makeStyles({
         marginLeft: "0.2em",
         border: "1px solid black",
         borderRadius: "0.2em",
-        width: "80px",
-        height: "80px",
+        width: 80,
+        height: 80,
     },
     productName: {
         gridColumn: "3 / span 5",
@@ -35,8 +35,8 @@ const useStyles = makeStyles({
     removeProductIcon: {
         gridColumn: "11 / span 2",
         justifySelf: "center",
-        width: "35px",
-        height: "35px",
+        width: 35,
+        height: 35,
     },
 });
 

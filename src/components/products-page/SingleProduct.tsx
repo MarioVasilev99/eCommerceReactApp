@@ -7,7 +7,7 @@ const useStyles = makeStyles({
         display: "flex",
         flexWrap: "wrap",
         flex: "0 0 100%",
-        height: "400px",
+        height: 400,
     },
     productImage: {
         width: "100%",
@@ -27,7 +27,7 @@ const useStyles = makeStyles({
     },
     productName: {
         fontFamily: "Roboto",
-        fontSize: "18px",
+        fontSize: 18,
         lineHeight: "26.95px",
         textAlign: "center",
     },
