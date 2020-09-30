@@ -76,6 +76,14 @@ const useStyles = makeStyles({
         borderRadius: 10,
         color: "#ffffff",
     },
+    completeButtonActive: {
+        backgroundColor: "#16db6b",
+        color: "#ffffff",
+    },
+    completeButtonInactive: {
+        backgroundColor: "#aaaba9",
+        color: "#000000",
+    },
 });
 
 export interface INewOrderInfo {
@@ -136,22 +144,9 @@ const ShoppingCart = ({ hideCart }: TProps): JSX.Element => {
         dispatch(resetCart());
     };
 
-    const handleCompleteButtonOnLoad = () => {
-        const completeButton = document.getElementById("complete-order-button");
-
-        if (completeButton !== null && itemsInCart.length === 0) {
-            completeButton.style.backgroundColor = "#aaaba9";
-            completeButton.style.color = "#000000";
-        }
-    };
-
     const classes = useStyles();
     return (
-        <div
-            className={classes.cartWrapper}
-            id="shopping-cart"
-            onLoad={handleCompleteButtonOnLoad}
-        >
+        <div className={classes.cartWrapper} id="shopping-cart">
             <div className={classes.cart}>
                 <img
                     className={classes.closeIcon}
@@ -181,8 +176,11 @@ const ShoppingCart = ({ hideCart }: TProps): JSX.Element => {
                     )}
                 </ul>
                 <p
-                    id="complete-order-button"
-                    className={classes.completeButton}
+                    className={
+                        itemsInCart.length === 0
+                            ? `${classes.completeButton} ${classes.completeButtonInactive}`
+                            : classes.completeButton
+                    }
                     onClick={handleCompleteButtonOnClick}
                 >
                     Complete Order
